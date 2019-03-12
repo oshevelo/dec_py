@@ -7,12 +7,11 @@ from .serializers import QuestionSerializer
 
 
 class QuestionsList(generics.ListCreateAPIView):
-    queryset = Question.objects.order_by('-id')[:5]
+    queryset = Question.objects.order_by('-id').all()
     serializer_class = QuestionSerializer
 
 
 class QuestionsDetail(generics.RetrieveUpdateDestroyAPIView):
-
     serializer_class = QuestionSerializer
 
     def get_object(self):
@@ -21,14 +20,11 @@ class QuestionsDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 def index(request):
-
     latest_question_list = Question.objects.order_by('-id')[:5]
-
     context = {
         'latest_question_list': latest_question_list,
         'my_var': 4
     }
-    
     return render(request, 'polls/index.html', context)
 
 def detail(request, question_pk):
