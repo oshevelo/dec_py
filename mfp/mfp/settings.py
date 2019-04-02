@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
-    'django_filters'
+    'django_filters',
+    'django_celery_results',
 ]
 
 
@@ -145,7 +146,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': '/home/sol/hill/oct/oct_py/mfp/debug.log',
+            'filename': '/home/sol/hill/dec/dec_py/mfp/debug.log',
         },
     },
     'loggers': {
@@ -154,5 +155,11 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
         },
+        #'apps.products': {
+         #   'handlers': ['file'],
+          #  'level': 'DEBUG',
+          #  'propagate': True,
+        #},
     },
 }
+CELERY_RESULT_BACKEND = 'django-db'
